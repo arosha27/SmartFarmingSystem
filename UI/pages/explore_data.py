@@ -2,11 +2,17 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
 
-# Load synthetic dataset
+# Load dataset
+
+# Get the base directory of the UI folder (one level up from /pages)
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
 @st.cache_data
 def load_data():
-    return pd.read_csv("E:/SmartFarmingSystem/UI/data/processed_farming_data.csv")
+    file_path = os.path.join(BASE_DIR, "data", "processed", "processed_farming_data.csv")
+    return pd.read_csv(file_path)
 
 df = load_data()
 
