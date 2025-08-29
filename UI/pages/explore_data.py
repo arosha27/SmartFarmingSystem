@@ -6,7 +6,7 @@ import seaborn as sns
 # Load synthetic dataset
 @st.cache_data
 def load_data():
-    return pd.read_csv("E:/SmartFarmingSystem/Data/processed/processed_farming_data.csv")
+    return pd.read_csv("E:/SmartFarmingSystem/UI/data/processed_farming_data.csv")
 
 df = load_data()
 
