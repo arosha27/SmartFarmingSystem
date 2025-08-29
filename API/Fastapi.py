@@ -4,13 +4,23 @@ from typing import Annotated
 
 import pickle
 import shap
+import pandas as pd
 import numpy as np
+import os
+
+
+# BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
+# def load_data():
+#     file_path = os.path.join(BASE_DIR, "data", "processed", "processed_farming_data.csv")
+#     return pd.read_csv(file_path)
+
 
 ############# Load the saved model and scaler ################
-with open("E:/SmartFarmingSystem/models/xgboost_classifier.pickle", "rb") as f:
+with open("../API/models/xgboost_classifier.pickle", "rb") as f:
     model = pickle.load(f)
 
-with open("E:/SmartFarmingSystem/models/scaler.pickle", "rb") as f:
+with open("../API/models/scaler.pickle", "rb") as f:
     scaler = pickle.load(f)
 
 ############### Create the FastAPI object ##############

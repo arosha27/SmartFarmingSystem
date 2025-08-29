@@ -105,8 +105,8 @@ import pickle
 
 xgb_model = model["xgb"]
 
-with open("models/xgboost_classifier.pickle" , "wb") as f:
+with open("../API/models/xgboost_classifier.pickle" , "wb") as f:
     pickle.dump(xgb_model , f)
     
-with open("models/scaler.pickle", "wb") as f:
+with open("../API/models/scaler.pickle", "wb") as f:
     pickle.dump(scaler, f)
