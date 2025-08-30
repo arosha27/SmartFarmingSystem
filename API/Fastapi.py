@@ -17,10 +17,10 @@ import os
 
 
 ############# Load the saved model and scaler ################
-with open("../API/models/xgboost_classifier.pickle", "rb") as f:
+with open("API/models/xgboost_classifier.pickle", "rb") as f:
     model = pickle.load(f)
 
-with open("../API/models/scaler.pickle", "rb") as f:
+with open("API/models/scaler.pickle", "rb") as f:
     scaler = pickle.load(f)
 
 ############### Create the FastAPI object ##############
