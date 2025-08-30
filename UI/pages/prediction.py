@@ -84,13 +84,13 @@
 
 
 
-
 ############################## Predictions without API #####################################
 
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import pickle
+from pathlib import Path
 import numpy as np
 import os
 
@@ -103,25 +103,39 @@ try:
 except Exception:
     shap = None
     SHAP_AVAILABLE = False
+    
+    
+    
+#---------------------------------
+# Load the model and scaler 
+#-----------------------------
 
-# -------------------------
-# Cached loader for model & scaler (adjust paths if needed)
-# -------------------------
-MODEL_PATH = "E:/SmartFarmingSystem/models/xgboost_classifier.pickle"
-SCALER_PATH = "E:/SmartFarmingSystem/models/scaler.pickle"
 
+from pathlib import Path
+import pickle
+import streamlit as st
+
+# Define paths
+HERE = Path(__file__).parent          # .../SmartFarmingSystem/UI/pages
+ROOT = HERE.parent.parent             # .../SmartFarmingSystem
+MODEL_DIR = ROOT / "models"
+
+MODEL_PATH = MODEL_DIR / "xgboost_classifier.pickle"
+SCALER_PATH = MODEL_DIR / "scaler.pickle"
 
 @st.cache_resource(show_spinner=False)
 def load_model_and_scaler(model_path=MODEL_PATH, scaler_path=SCALER_PATH):
     model_obj = None
     scaler_obj = None
-    # load model
+
+    # Load model
     try:
         with open(model_path, "rb") as f:
             model_obj = pickle.load(f)
     except Exception as e:
         st.error(f"Failed to load model from '{model_path}': {e}")
-    # load scaler
+
+    # Load scaler
     try:
         with open(scaler_path, "rb") as f:
             scaler_obj = pickle.load(f)
